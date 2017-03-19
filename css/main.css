@@ -1,0 +1,109 @@
+/* Stylesheet by © Hidde Schultze */
+/*font import*/
+@font-face {
+    font-family: coolvetica;
+    src: url('coolvetica.woff');
+}
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body{
+  margin: 0 auto;
+}
+html, body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  overflow: hidden;
+  line-height: inherit!important;
+  background-color: #fafafa;
+}
+
+.content{
+  display: block;
+  width: 80vw;
+  height: calc(100% - 30px);
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  /*text-shadow: 0 1px 3px rgba(0,0,0,0.10), 0 1px 1px rgba(0,0,0,0.14);*/
+}
+  .content .row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+    .content heading{
+      font-family: 'Roboto';
+      font-size: 70px;
+      font-weight: 500;
+      width: 100%;
+      line-height: 90%;
+    }
+      .content heading b{
+        color: #1abc9c;
+      }
+    .content .pinput{
+      width: 100%;
+    }
+      .pinput .mdl-textfield__input{
+        font-size: 6vw;
+      }
+      .pinput .mdl-textfield__label{
+        font-size: 6vw;
+      }
+      .pinput .mdl-textfield__label:after{
+        background-color: #1abc9c;
+        transition: .1s;
+      }
+      .pinput .mdl-textfield__label.correct:after{
+        background-color: #16a085;
+        height: 4px;
+      }
+      .pinput.incorrect .mdl-textfield__label:after{
+        background-color: #e74c3c;
+        height: 5px;
+      }
+      .pinput.incorrect .mdl-textfield__input{
+        color: #e74c3c;
+      }
+  .content score{
+    font-size: 25px;
+    color: #e74c3c;
+    display: none;
+  }
+  .content error{
+    font-size: 25px;
+    color: #e74c3c;
+    display: none;
+  }
+@media only screen and (max-width: 768px) {
+  .content{
+    width: 90vw;
+  }
+}
+.footer{
+  font-size: 12px;
+  padding: 5px;
+  position: relative;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  height: 30px;
+}
+  .footer lv{
+    color: #e74c3c;
+  }
+  .footer a{
+    color: #EAB600;
+    text-decoration: none;
+    transition: .2s;
+  }
+    .footer a:hover{
+      color: #FFCA28;
+    }
+    .footer a:visited{
+      color: #EAB600;
+    }

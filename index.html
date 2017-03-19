@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="language" content="NL">
+    <meta http-equiv="language" content="EN">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>rinzepi ‒ leer het getal pi!</title>
+    <meta name="description" content="Met rinzepi leer je het getal pi snel uit je hoofd!">
+    <meta name="author" content="Hidde Schultze">
+    <meta name="copyright" content="Hidde Schultze" />
+    <meta name="reply-to" content="hello@hiddeschultze.nl">
+    <meta name="keywords" content="hidde schultze, rinze, pi, rinzepi, getal pi">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/functions.js" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/material_hidde.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/fav/apple-touch-icon.png?v=QE5OJqq9JR">
+    <link rel="icon" type="image/png" href="/img/fav/favicon-32x32.png?v=QE5OJqq9JR" sizes="32x32">
+    <link rel="icon" type="image/png" href="/img/fav/favicon-194x194.png?v=QE5OJqq9JR" sizes="194x194">
+    <link rel="icon" type="image/png" href="/img/fav/android-chrome-192x192.png?v=QE5OJqq9JR" sizes="192x192">
+    <link rel="icon" type="image/png" href="/img/fav/favicon-16x16.png?v=QE5OJqq9JR" sizes="16x16">
+    <link rel="manifest" href="/img/fav/manifest.json?v=QE5OJqq9JR">
+    <link rel="mask-icon" href="/img/fav/safari-pinned-tab.svg?v=QE5OJqq9JR" color="#5bbad5">
+    <link rel="shortcut icon" href="/img/fav/favicon.ico?v=QE5OJqq9JR">
+    <meta name="apple-mobile-web-app-title" content="rinzepi">
+    <meta name="application-name" content="rinzepi">
+    <meta name="msapplication-config" content="/img/fav/browserconfig.xml?v=QE5OJqq9JR">
+    <meta name="theme-color" content="#fafafa">
+
+    <meta property="og:image" content="https://rinzepi.hiddehs.nl/img/socials.jpg">
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:url" content="https://rinzepi.hiddehs.nl">
+    <meta property="og:description" content="met rinzepi leer je het getal pi snel uit je hoofd!">
+    <meta property="og:title" content="rinze&pi;">
+    <style media="screen">
+
+    </style>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var pi = "3,141592653589793238462643383279502884197169399375105820974944592307816406286 208998628034825342117067982148086513282306647093844609550582231725359408128481 117450284102701938521105559644622948954930381964428810975665933446128475648233 786783165271201909145648566923460348610454326648213393607260249141273724587006 606315588174881520920962829254091715364367892590360011330530548820466521384146 951941511609433057270365759591953092186117381932611793105118548074462379962749 567351885752724891227938183011949129833673362440656643086021394946395224737190 702179860943702770539217176293176752384674818467669405132000568127145263560827 785771342757789609173637178721468440901224953430146549585371050792279689258923 542019956112129021960864034418159813629774771309960518707211349999998372978049 951059731732816096318595024459455346908302642522308253344685035261931188171010 003137838752886587533208381420617177669147303598253490428755468731159562863882 353787593751957781857780532171226806613001927876611195909216420198938095257201";
+        console.log();
+        var errormode = false;
+        $("#pinput").keyup(function () {
+          if(errormode){
+            $(this).val("");
+            $(".pinput").toggleClass("incorrect");
+            $("error").fadeToggle("fast");
+            errormode = false;
+          }else{
+            if(pi.substring(0, $(this).val().length) == $(this).val()){
+              $(".pinput .mdl-textfield__label").toggleClass("correct");
+              setTimeout(function () {
+                $(".pinput .mdl-textfield__label").toggleClass("correct");
+              },200)
+            }else{
+              $(".pinput").toggleClass("incorrect");
+              $(this).val(pi.substring(0,$(this).val().length));
+              $("error").fadeToggle("fast");
+              $("error").text("jammer, probeer het nog eens!");
+              errormode = true;
+            }
+          }
+        })
+        $("#pinput").click(function () {
+          if(errormode){
+            $(this).val("");
+            $(".pinput").toggleClass("incorrect");
+            $("error").fadeToggle("fast");
+            errormode = false;
+          }
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <div class="content">
+      <div class="row">
+        <heading>hi, dit is is <b>rinze π</b>!</heading>
+        <div class="mdl-textfield mdl-js-textfield pinput">
+          <input class="mdl-textfield__input" type="text" pattern="[0-9]+([,\.][0-9]+)?" name="pi" id="pinput" />
+          <label class="mdl-textfield__label" for="username">type het getal pi zover je weet</label>
+        </div>
+        <scrore></score>
+        <error></error>
+      </div>
+    </div>
+    <div class="footer">
+      made with <lv>❤</lv> for rinze's 9<sup>st</sup> 🎈 by <a href="https://hiddeschultze.nl" target="_blank">hidde.schultze</a>
+    </div>
+  </body>
+</html>
