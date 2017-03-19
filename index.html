@@ -47,13 +47,22 @@
     <script type="text/javascript">
       $(document).ready(function () {
         var pi = "3,141592653589793238462643383279502884197169399375105820974944592307816406286 208998628034825342117067982148086513282306647093844609550582231725359408128481 117450284102701938521105559644622948954930381964428810975665933446128475648233 786783165271201909145648566923460348610454326648213393607260249141273724587006 606315588174881520920962829254091715364367892590360011330530548820466521384146 951941511609433057270365759591953092186117381932611793105118548074462379962749 567351885752724891227938183011949129833673362440656643086021394946395224737190 702179860943702770539217176293176752384674818467669405132000568127145263560827 785771342757789609173637178721468440901224953430146549585371050792279689258923 542019956112129021960864034418159813629774771309960518707211349999998372978049 951059731732816096318595024459455346908302642522308253344685035261931188171010 003137838752886587533208381420617177669147303598253490428755468731159562863882 353787593751957781857780532171226806613001927876611195909216420198938095257201";
-        console.log();
+        var highscore = localStorage.getItem("highscore");
+        if(highscore == null){highscore = 0;}
+        $("hscore").html("high<emoj>🏆 : </emoj>" + highscore);
         var errormode = false;
+        $("score,error").hide();
         $("#pinput").keyup(function () {
           if(errormode){
-            $(this).val("");
+            if($(this).val().length > 3){
+              $(this).val("3,");
+            }else{
+              $(this).val("");
+            }
             $(".pinput").toggleClass("incorrect");
             $("error").fadeToggle("fast");
+            $("score").toggleClass("active");
+            $("score").toggle();
             errormode = false;
           }else{
             if(pi.substring(0, $(this).val().length) == $(this).val()){
@@ -61,10 +70,21 @@
               setTimeout(function () {
                 $(".pinput .mdl-textfield__label").toggleClass("correct");
               },200)
+              if($(this).val().length > 2){
+                $("score").show();
+                $("score").html("π-<emoj>🎖</emoj>: " + ($(this).val().length - 2) + " decimalen" )
+              }
             }else{
+              if(highscore < ($(this).val().length - 3)){
+                $("hscore").toggleClass("active");
+                highscore = ($(this).val().length - 3);
+                $("hscore").html("high<emoj>🏆 : </emoj>" + highscore);
+                localStorage.setItem("highscore", highscore);
+              }
               $(".pinput").toggleClass("incorrect");
               $(this).val(pi.substring(0,$(this).val().length));
               $("error").fadeToggle("fast");
+              $("score").toggleClass("active");
               $("error").text("jammer, probeer het nog eens!");
               errormode = true;
             }
@@ -72,9 +92,15 @@
         })
         $("#pinput").click(function () {
           if(errormode){
-            $(this).val("");
+            if($(this).val().length > 3){
+              $(this).val("3,");
+            }else{
+              $(this).val("");
+            }
             $(".pinput").toggleClass("incorrect");
             $("error").fadeToggle("fast");
+            $("score").toggleClass("active");
+            $("score").toggle();
             errormode = false;
           }
         })
@@ -87,10 +113,11 @@
         <heading>hi, dit is is <b>rinze π</b>!</heading>
         <div class="mdl-textfield mdl-js-textfield pinput">
           <input class="mdl-textfield__input" type="text" pattern="[0-9]+([,\.][0-9]+)?" name="pi" id="pinput" />
-          <label class="mdl-textfield__label" for="username">type het getal pi zover je weet</label>
+          <label class="mdl-textfield__label" for="pinput">type het getal pi zover je weet</label>
         </div>
-        <scrore></score>
+        <score></score>
         <error></error>
+        <hscore>high<emoj>🏆 : </emoj></hscore>
       </div>
     </div>
     <div class="footer">

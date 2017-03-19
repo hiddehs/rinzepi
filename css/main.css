@@ -70,14 +70,38 @@ html, body {
         color: #e74c3c;
       }
   .content score{
+    display: block;
     font-size: 25px;
-    color: #e74c3c;
-    display: none;
+    color: #272727;
+    opacity: .2;
+    transition: .2s;
+    width: 100%;
   }
+    .content score.active{
+      opacity: 1;
+    }
+    .content score emoj{
+      /*font-size: 20px;*/
+    }
+  .content hscore{
+    display: block;
+    font-size: 25px;
+    color: #272727;
+    opacity: .2;
+    transition: .2s;
+    width: 100%;
+  }
+    .content hscore.active{
+      opacity: 1;
+      color: #16a085;
+    }
+    .content hscore emoj{
+      font-size: 20px;
+    }
   .content error{
+    display: block;
     font-size: 25px;
     color: #e74c3c;
-    display: none;
   }
 @media only screen and (max-width: 768px) {
   .content{
